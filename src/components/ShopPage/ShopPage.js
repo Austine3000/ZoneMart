@@ -26,7 +26,7 @@ class ShopPage extends React.Component{
     
 		return(
             <div >
-                <div className="container-fluid" >
+                <div >
                     <Carousel/>
                 </div>
                 <div className="container-fluid">

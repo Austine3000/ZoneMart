@@ -14,7 +14,7 @@ class Cart extends React.Component{
 
     deleteCart(product) {
         this.props.actions.deleteCartSuccess(product);
-        toastr.success('Item has been removed to cart');
+        toastr.error('Item has been removed to cart');
     }
 
     render() {
@@ -34,7 +34,7 @@ class Cart extends React.Component{
        
 		return(
             <div>
-                <div className="container margin1" >
+                <div className="container-fluid margin1" >
                     <h4 className="well">Please Confirm Your Order and Checkout Your Cart</h4> 
                     <div className="col-sm-12">
                         <table className="table table-striped">
