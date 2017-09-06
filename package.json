@@ -1,9 +1,16 @@
 {
   "name": "e-commerce",
   "version": "1.0.0",
-  "description": "An online shopping platform.",
+  "description": "An online shopping platform",
   "main": "index.js",
   "scripts": {
+    "prestart": "babel-node tools/startMessage.js",
+    "start": "npm-run-all --parallel test:watch open:src lint:watch",
+    "open:src": "babel-node tools/srcServer.js",
+    "lint": "node_modules/.bin/esw webpack.config.* src tools",
+    "lint:watch": "npm run lint -- --watch",
+    "test": "mocha --reporter spec tools/testSetup.js \"src/**/*.test.js\"",
+    "test:watch": "npm run test -- --watch"
   },
   "author": "",
   "license": "ISC",
