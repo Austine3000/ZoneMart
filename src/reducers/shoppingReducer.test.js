@@ -2,7 +2,7 @@ import expect from "expect";
 import shoppingReducer from "./shoppingReducer";
 import * as actions from "../actions/shoppingActions";
 
-describe("Cart Reducer", () => {
+describe("Shopping/Product Reducer", () => {
 
     it("it should add a new good to the list of goods when passed ADD_TO_GOODS type", () => { 
 

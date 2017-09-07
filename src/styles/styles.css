@@ -409,9 +409,9 @@ btn_link{
 }
 /*/////////////////////////////////////////////////////////////*/
 .ecaroDiv{
-	
 	width:100%;
-	
+	padding-right: 0px;
+    padding-left: 0px;
 	height:470px;
 }
 .eImage{
@@ -420,7 +420,7 @@ height:867px
 }
 
 .color1{
-	color:#332560;
+	color:#e63462;
 }
 .font1{
 	font-size: 16px;
@@ -449,14 +449,97 @@ height:867px
     padding: 15px 50px;
 }
 
+.btnqty{
+	margin-left:5px
+}
+
+.mrgbtm{
+	margin-bottom:5px;
+}
+
+.btn-xs{
+	height:20px
+}
+
+.mrg-ryt{
+	margin-right:5px;
+}
+.mypanel{
+	height:40px;
+	padding-top:10px;
+	background:burlywood;
+	color:white
+}
 
 
+.amt{
+	background: #040306;
+	color:#eee8e8;
+	height:60px;
+	padding:10px
+}
 
+.btnlink{
+	height:20px;
+	padding:2px;
 
+}
 
+.hand{
+	cursor: pointer; cursor: hand; 
+}
+	
+.fixd {position: fixed;
+    background-color:#e6323d;
+	width:100px;
+	z-index:1000;
+	opacity:0.9;
+    height: 35px;
+    top: 504px;
+	color:white;
+	
+  
+    right: 10px; }
 
+	.inlane{
+		display:inline-block;
+	}
 
+	.describe{
+		height:125px;
+	}
+	.mytable > tr{
+		padding: 5px;
+	}
+	.pixhover:hover{
+		text-decoration:underline;
+	}
+	.color2{
+		color:#581845
+	}
+	.custombtn{
+		width:100%
+	}
 
+	.smallFont{
+		font-size:11px;
+		
+		
+	}
+	.center1{
+		margin:10 auto;
+		
+		width:80%
+	}
+	.addressdiv{
+		word-wrap: break-word;
+		width:78%;
+		margin-left:5px;
 
-
-
+	}
+	.capital{
+		text-transform: capitalize;
+	}
+	.spacingRyt{
+		margin-right: 28px
+	}

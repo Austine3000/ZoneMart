@@ -1,102 +1,429 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
 import {Link} from "react-router";
+import Header from '../common/Header';
+import Thankyou from '../thankyou/Thankyou';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as cartActions from '../../actions/cartActions';
-import toastr from 'toastr';
+import {bindActionCreators} from 'redux'; 
+import * as cartActions from '../../actions/cartActions'; 
+import * as shoppingActions from '../../actions/shoppingActions'; 
 
 class Cart extends React.Component{
-    constructor(props, context) {
-        super(props, context);
-    
-        this.deleteCart = this.deleteCart.bind(this);
+
+    constructor(props){
+        super(props);
+        this.state={
+            cart:Object.assign([],props.cart),
+            products:Object.assign([],props.products)
+        }
+            this.AddToQty=this.AddToQty.bind(this);
+            this.ReduceQty=this.ReduceQty.bind(this);
+            this.removeFromCart = this.removeFromCart.bind(this);
+           console.log(this.props.actions);
     }
 
-    deleteCart(product) {
-        this.props.actions.deleteCartSuccess(product);
-        toastr.error('Item has been removed to cart');
+    componentWillReceiveProps(nextProps){
+            console.log(nextProps.cart);
+			if(nextProps.cart != this.props.cart){
+               
+                   
+					this.setState({
+
+						cart:Object.assign([],nextProps.cart),
+                        products:Object.assign([],nextProps.products),
+                        
+						
+			})
+             console.log(this.props.cart);
+             console.log(nextProps.cart);
     }
+
+   }
+
+    
+    removeFromCart(goodId,e){
+    e.preventDefault();
+     this.props.actions.cartActions.removeFromCart(goodId);
+     let targetProduct=Object.assign({},this.state.products.find(product => product.id == goodId));
+     targetProduct.isAdded=false;
+     targetProduct.choice="Add To Cart";
+     targetProduct.Qty=0;
+   
+    let newProducts=[...this.state.products.filter(product => product.id != targetProduct.id),targetProduct];
+    newProducts=newProducts.sort(function(a, b) {
+                    
+                    return (a.id - b.id);
+                });
+    this.props.actions.shoppingActions.UpdateProduct(newProducts);
+     
+    }
+
+    AddToQty(goodID,e){
+     
+        e.preventDefault();
+        let mockCart=Object.assign([],this.state.cart);
+        let good_target = mockCart.find(cartgood => cartgood.id == goodID);
+        let dQty=good_target.Qty + 1;
+        good_target = Object.assign({},good_target,{Qty:dQty});
+            console.log(good_target.id);
+            console.log(good_target);
+        good_target = Object.assign({},good_target);
+               
+                
+               let newCart =[...mockCart.filter(cartgood => cartgood.id != good_target.id), Object.assign({}, good_target)];
+                newCart= newCart.sort(function(a, b) {
+                 return (a.id - b.id);
+               });
+            
+             
+             console.log( newCart );
+            
+
+             console.log(this.state.products);
+           this.props.actions.cartActions.UpdateCart(newCart);
+   
+   }
+
+ 
+
+
+  ReduceQty(goodID,e){
+     
+        e.preventDefault();
+        let dQty;
+        let mockCart=Object.assign([],this.state.cart);
+        let good_target = mockCart.find(cartgood => cartgood.id == goodID);
+        if(good_target.Qty != 0){
+        dQty=good_target.Qty - 1;
+         console.log(dQty);
+    }else{
+         dQty=0;
+    }
+    console.log(dQty);
+        good_target = Object.assign({},good_target,{Qty:dQty});
+            console.log(good_target.id);
+            console.log(good_target);
+        good_target = Object.assign({},good_target);
+               
+                
+               let newCart =[...mockCart.filter(cartgood => cartgood.id != good_target.id), Object.assign({}, good_target)];
+                newCart= newCart.sort(function(a, b) {
+                 return (a.id - b.id);
+               });
+            
+             
+             console.log( newCart );
+            
+
+             console.log(this.state.products);
+           this.props.actions.cartActions.UpdateCart(newCart);
+   
+   }
 
     render() {
-        const { products } = this.props;
-        let totalprice = 0;
-        let isDisabled = true;
-
-        (function totalPrice() {
-            if (products.length > 0) {
-                isDisabled = false;
-                for (let i = 0; i<products.length; i++) {
-                    totalprice = totalprice + products[i].Price
-                }
+         var style2={
+                fontSize:"12px",
+               
+                textDecoration:"none",
+               
+                
+                
             }
-            return isDisabled;
-        })();
-       
+
+        let Total=0;
+console.log(this.props.cart);
+             
+            let  tableRow  = (this.state.cart.length > 0) ? this.state.cart.map( (cartgood,index) => 
+                                                        
+            
+                <tr key={index}>
+                    <th scope="row">{index+1}</th>
+                    <td>{cartgood.Name}</td>
+                    <td>{cartgood.Qty}</td>
+                    <td>{"$" + cartgood.Price}</td>
+                    <td>{"$" +  cartgood.Price * cartgood.Qty}</td>
+                    <td>
+                        <button onClick={this.removeFromCart.bind(this,cartgood.id)} className="btn btn-danger btn-xs">Remove</button>
+                        
+                    </td>
+                    <td > <button name={`btn${index}`} onClick={this.AddToQty.bind(this,cartgood.id)} className="btn btn-info btnqty btn-xs pull-right" role="button"><span className="glyphicon glyphicon-plus"></span></button></td>
+                    <td > <button name={`btn${index}`} onClick={this.ReduceQty.bind(this,cartgood.id)} className="btn btn-info btnqty btn-xs btn-danger " role="button"><span className="glyphicon glyphicon-minus"></span></button></td>
+                </tr>
+
+                            ): <tr className="h3">Cart is EMPTY!</tr> ;
+
+        
+              
+                                                          
+            if(this.props.cart.length > 0) { 
+
+                let amountList =  this.props.cart.map( (cartgood,index) =>  cartgood.Price * cartgood.Qty);
+                amountList.reduce((x, y) => x + y);        
+                Total =  amountList.reduce((x, y) => x + y);
+            }                                      
+
+                                                              
+        
 		return(
             <div>
-                <div className="container-fluid margin1" >
-                    <h4 className="well">Please Confirm Your Order and Checkout Your Cart</h4> 
-                    <div className="col-sm-12">
-                        <table className="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Product Name</th>
-                                        <th>Price</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {products.map((product, index) => 
-                                        <tr key={index}>
-                                            <th scope="row">{index + 1}</th>
-                                            <td>{product.Name}</td>
-                                            <td>${product.Price}</td>
-                                            <td><button onClick={() => this.deleteCart(product)} className="btn btn-danger">Remove</button></td>
-                                        </tr>
-                                    )}
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th></th>
-                                        <th>Total Price:</th>
-                                        <th>${totalprice}</th>
-                                        <th></th>
-                                    </tr>
-                                </tfoot>
-                        </table>
+              
+                    <div>
+                        <Thankyou/> 
                     </div>
-                    <div style={{marginTop:"10px"}}>
-                        <Link to={"/Checkout"} ><button disabled={isDisabled} type="button" className="btn btn-success">Proceed to checkout</button></Link>
-                    </div> 
-                </div>            
+                        <nav className="navbar navbar-inverse navbg-blue navbar-static-top" style={{margin: "0px", height:"70px"}} >
+                                 
+                                    <div className="navbar-header"  >
+
+                                        <Link to={"/"} className="navbar-brand apptxt" ><span className="apptxt  blue glyphicon glyphicon-shopping-cart"><span className="afont">eMart</span></span></Link>
+                                        
+                                        <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+
+                                            <span className="icon-bar"></span>
+                                            <span className="icon-bar"></span>
+                                            <span className="icon-bar"></span>
+                                                    
+                                        </button>
+
+                                  </div>
+
+                                    <div className="collapse  navbar-collapse" id="myNavbar">
+                                        <ul className="nav navbar-nav navbar-right" style={{marginRight: "5px"}}>
+                                            <li ><Link to={"/"} className="white_txt" style={{fontSize:"12px",color:"white"}}>Continue Shopping</Link></li>
+                                            <li ><Link to={"/Checkout"} className="white_txt" style={{fontSize:"12px",color:"white"}}>Checkout</Link></li> |
+                                        
+                                        </ul>
+                                        
+                                    </div>
+
+                        </nav>  
+                    <div className=" container " >
+                        
+                            
+                            <p className="col-sm-10 h4 panel mypanel" >Please, Confirm Your Order and Checkout Your Cart </p><div className="col-sm-2 amt ">Total Amount: <span className="h2 redz">{"$" + Total}</span></div>
+                            
+                        
+                        <div className="col-sm-8">
+                            <table className="table table-striped">
+                                    <thead>
+                                        <tr>
+                                        <th>#</th>
+                                        <th>Goods</th>
+                                        <th>Qty</th>
+                                        <th>Price</th>
+                                        <th>Amount</th>
+                                        <th><span className="glyphicon glyphicon glyphicon-remove text-danger"></span>Remove</th>
+                                        <th className="smallFont text-success"><div className="pull-right"><span className="glyphicon glyphicon glyphicon-plus  "></span>Add Qty</div></th>
+                                        <th className="smallFont text-danger"><span className="glyphicon glyphicon glyphicon-minus"></span>Reduce Qty</th>
+                                        </tr>
+                                    </thead>
+                                        <tbody>
+                                        
+
+                                              {tableRow} 
+                                        </tbody>        
+                                   
+                                     
+                            </table>
+                            
+                        </div>
+                        <div className="col-sm-3 col-sm-offset-1">
+                            <img src={require("../../image/cart.jpg")} style={{width:"100%",marginTop:"100px"}} alt="..."/>
+                            
+                        </div>    
+                        
+                    </div>      
+                    <div className="col-sm-3 col-sm-offset-9" style={{paddingLeft:"2%",marginTop:"35px"}} >
+                        <Link style={style2}   to={"/"} className="btn btn-success spacingRyt">CONTINUE SHOPPING</Link>
+                        <Link style={style2} to={"/Checkout"} className="btn btn-warning">CHECKOUT</Link>
+                     </div>
+
+
+                    
+                
             </div>
-        )
-    }
+			)
+
+
+
+	}
+
+
 }
-
-Cart.propTypes = {
-    products: React.PropTypes.array.isRequired,
-    actions: React.PropTypes.object.isRequired
-};
-
-Cart.contextTypes = {
-    router: PropTypes.object
-}
-
 
 function mapStateToProps(state, ownProps) {
-    return {
-        products : state.products
+        
+        return {
+            products: state.products,
+            cart: state.cart
+        };
     }
-}
 
-function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators(Object.assign({}, cartActions), dispatch)
+    function mapDispatchToProps(dispatch) {  
+   return {
+              actions:  {
+                shoppingActions: bindActionCreators(shoppingActions, dispatch),
+                cartActions: bindActionCreators(cartActions, dispatch)
+              }
+          }
     }
-}
+export default connect(mapStateToProps,mapDispatchToProps) (Cart);
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+
+
+
+
+
+
+
+
+
+
+// import React from 'react';
+// import {Link} from "react-router";
+// import Header from '../common/Header';
+// import Thankyou from '../thankyou/Thankyou';
+// import { connect } from 'react-redux';
+// import {bindActionCreators} from 'redux'; 
+// import * as cartActions from '../../actions/cartActions'; 
+
+// class Cart extends React.Component{
+
+//     constructor(props){
+//         super(props);
+        
+        
+//          this.removeFromCartd = this.removeFromCart.bind(this);
+//            console.log(this.props.actions);
+//     }
+    
+//     removeFromCart(goodId,e){
+//     e.preventDefault();
+//      this.props.actions.RemoveFromCart(goodId);
+     
+//   }
+
+//     render() {
+//         let Total=0;
+
+//             let  tableRow  = (this.props.cart.length > 0) ? this.props.cart.map( (cartgood,index) => 
+                                                        
+            
+//                 <tr key={index}>
+//                     <th scope="row">{index+1}</th>
+//                     <td>{cartgood.Name}</td>
+//                     <td>{cartgood.Qty}</td>
+//                     <td>{"$" + cartgood.Price}</td>
+//                     <td>{cartgood.Price * cartgood.Qty}</td>
+//                     <td><button onClick={this.removeFromCart.bind(this,cartgood.id)} className="btn btn-danger btn-xs">Remove</button></td>
+//                 </tr>
+
+//                             ): <tr className="h3">Cart is EMPTY!</tr> ;
+
+        
+              
+                                                          
+//             if(this.props.cart.length > 0) { 
+
+//                 let amountList = this.props.cart.map( (cartgood,index) => cartgood.Price * cartgood.Qty);
+//                 amountList.reduce((x, y) => x + y);        
+//                 Total = amountList.reduce((x, y) => x + y);
+//             }                                      
+
+                                                              
+        
+// 		return(
+//             <div>
+              
+//                     <div>
+//                         <Thankyou/> 
+//                     </div>
+//                         <nav className="navbar navbar-inverse navbg-blue navbar-static-top" style={{margin: "0px", height:"70px"}} >
+//                                  
+//                                     <div className="navbar-header"  >
+
+//                                         <Link to={"/"} className="navbar-brand apptxt" ><span className="apptxt  blue glyphicon glyphicon-shopping-cart"><span className="afont">eMart</span></span></Link>
+                                        
+//                                         <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+
+//                                             <span className="icon-bar"></span>
+//                                             <span className="icon-bar"></span>
+//                                             <span className="icon-bar"></span>
+                                                    
+//                                         </button>
+
+//                                   </div>
+
+//                                     <div className="collapse  navbar-collapse" id="myNavbar">
+//                                         <ul className="nav navbar-nav navbar-right" style={{marginRight: "5px"}}>
+//                                             <li ><Link to={"/"} className="white_txt" style={{fontSize:"14px",color:"white"}}>Product Page</Link></li>
+//                                             <li ><Link to={"/Checkout"} className="white_txt" style={{fontSize:"14px",color:"white"}}>Checkout</Link></li> |
+                                        
+//                                         </ul>
+                                        
+//                                     </div>
+
+//                         </nav>  
+//                     <div className=" container " >
+                        
+                            
+//                             <p className="col-sm-10 h4 panel mypanel" >Please, Confirm Your Order and Checkout Your Cart </p><div className="col-sm-2 amt ">Total Amount: <span className="h2 redz">{"$" + Total}</span></div>
+                            
+                        
+//                         <div className="col-sm-8">
+//                             <table className="table table-striped">
+//                                     <thead>
+//                                         <tr>
+//                                         <th>#</th>
+//                                         <th>Goods</th>
+//                                         <th>Qty</th>
+//                                         <th>Price</th>
+//                                         <th>Amount</th>
+//                                         <th><span className="glyphicon glyphicon glyphicon-minus"></span>Remove</th>
+//                                         </tr>
+//                                     </thead>
+//                                         <tbody>
+                                        
+
+//                                               {tableRow} 
+//                                         </tbody>        
+                                   
+                                     
+//                             </table>
+                            
+//                         </div>
+//                         <div className="col-sm-3 col-sm-offset-1">
+//                             <img src={require("../../image/cart.jpg")} style={{width:"100%",marginTop:"100px"}} alt="..."/>
+//                         </div>    
+                        
+//                     </div>      
+
+
+
+                    
+                
+//             </div>
+// 			)
+
+
+
+// 	}
+
+
+// }
+
+// function mapStateToProps(state, ownProps) {
+        
+//         return {
+//             cart: state.cart
+//         };
+//     }
+
+//     function mapDispatchToProps(dispatch) {  
+//     return {
+//         actions: bindActionCreators(cartActions, dispatch)
+//     };
+//     }
+
+// export default connect(mapStateToProps,mapDispatchToProps) (Cart);
+
 
