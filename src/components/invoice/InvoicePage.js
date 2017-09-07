@@ -1,11 +1,20 @@
-
 import React, {PropTypes} from 'react';
 import { Link, IndexLink } from 'react-router';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as invoiceActions from '../../actions/invoiceActions'; 
+import * as loginActions  from '../../actions/loginActions';
 
 class InvoicePage extends React.Component {
+     constructor(props, context) {
+        super(props, context)
+        this.clearState = this.clearState.bind(this);
+    }
+
+    clearState() {
+        this.props.actions.clearData();
+        this.context.router.push('/');
+    }
 
    	
     onDownload() {
@@ -62,34 +71,6 @@ class InvoicePage extends React.Component {
             return (
 
                 <div>
-                    
-                    <nav className="navbar navbar-inverse navbg-blue navbar-static-top" style={{margin: "0px", height:"70px"}} >
-                                     
-                                        <div className="navbar-header"  >
-
-                                            <Link to={"/"} className="navbar-brand apptxt" ><span className="apptxt  blue glyphicon glyphicon-shopping-cart"><span className="afont">eMart</span></span></Link>
-                                            
-                                            <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-
-                                                <span className="icon-bar"></span>
-                                                <span className="icon-bar"></span>
-                                                <span className="icon-bar"></span>
-                                                        
-                                            </button>
-
-                                      </div>
-
-                                        <div className="collapse  navbar-collapse" id="myNavbar">
-                                            <ul className="nav navbar-nav navbar-right" style={{marginRight: "5px"}}>
-                                                <li ><Link to={"/Cart"} className="white_txt" style={{fontSize:"12px",color:"white"}}>View Cart</Link></li>
-                                                <li ><Link to={"/Checkout"} className="white_txt" style={{fontSize:"12px",color:"white"}}>Edit Details</Link></li>
-                                                <li ><Link to={"/"} className="white_txt" style={{fontSize:"12px",color:"#FFFFFF"}}>Product Page </Link></li >
-                                                
-                                            </ul>
-                                            
-                                        </div>
-
-                                </nav>   
                     <div className="container col-sm-offset-2" style={{marginTop:"20px"}}>
                             <div className="row">
 
@@ -140,9 +121,7 @@ class InvoicePage extends React.Component {
                                                     
                                                     
                                                     
-                                                    )
-
-                                                    
+                                                        )   
                                                     }
                                                 </tbody>        
                                             
@@ -150,6 +129,7 @@ class InvoicePage extends React.Component {
                                         <div className="col-sm-4 pull-right" >
                                             <h4 className="text-success">Total Amount:<span style={{color:"#4a0807",fontSize:"20px"}}> {"$"+ Total}</span></h4>
                                             <button onClick={this.onDownload.bind(this)}className="btn btn-success btn-xs">Download Invoice</button>
+                                            <button type="button" onClick={() => this.clearState()} className="btn btn-success">Finish</button>
                                         </div>
                                         
                                 </div>
@@ -165,6 +145,14 @@ class InvoicePage extends React.Component {
     }
 }
 
+InvoicePage.propTypes = {
+    actions: React.PropTypes.object.isRequired
+};
+
+InvoicePage.contextTypes = {
+    router: PropTypes.object
+}
+
     function mapStateToProps(state, ownProps) {
         
         return {
@@ -175,9 +163,8 @@ class InvoicePage extends React.Component {
 
     function mapDispatchToProps(dispatch) {  
         return {
-                    actions:bindActionCreators(invoiceActions, dispatch)
-                    
-                }
+            actions: bindActionCreators(Object.assign({}, loginActions, invoiceActions), dispatch)          
             }
+        }
             
 export default connect(mapStateToProps,mapDispatchToProps) (InvoicePage);

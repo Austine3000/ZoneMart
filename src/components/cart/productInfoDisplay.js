@@ -77,8 +77,8 @@ class ProductInfoDisplay extends React.Component{
                             </div>
                         )}
                         <div style={{marginTop:"10px"}}>
-                        <button type="button" onClick={() => this.clearState()} className="btn btn-success">Finish</button>
-                    </div> 
+                            <button type="button" onClick={() => this.clearState()} className="btn btn-success">Finish</button>
+                        </div> 
                     </div>
                 </div>
             </div>

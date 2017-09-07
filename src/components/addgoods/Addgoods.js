@@ -1,7 +1,6 @@
 import React from 'react';
 import {Link} from "react-router";
 import Header from '../common/Header';
-import Thankyou from '../thankyou/Thankyou';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux'; 
 import * as shoppingActions from '../../actions/shoppingActions'; 
@@ -20,9 +19,6 @@ class ProductList extends React.Component{
             Qty:0,
             isAdded:false,
             choice:"Add To Cart"
-
-
-
         }
 
         console.log(this.props.actions);
@@ -63,34 +59,6 @@ class ProductList extends React.Component{
 		return(
 
             <div>
-                
-                   
-                    <nav className="navbar navbar-inverse navbg-blue navbar-static-top" style={{margin: "0px", height:"70px"}} >
-                                 
-                                    <div className="navbar-header"  >
-
-                                        <Link to={"/"} className="navbar-brand apptxt" ><span className="apptxt  blue glyphicon glyphicon-shopping-cart"><span className="afont">eMart</span></span></Link>
-                                        
-                                        <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-
-                                            <span className="icon-bar"></span>
-                                            <span className="icon-bar"></span>
-                                            <span className="icon-bar"></span>
-                                                    
-                                        </button>
-
-                                  </div>
-
-                                    <div className="collapse  navbar-collapse" id="myNavbar">
-                                        <ul className="nav navbar-nav navbar-right" style={{marginRight: "5px"}}>
-                                            <li ><Link to={"/"} className="white_txt" style={{fontSize:"14px",color:"white"}}></Link></li>
-                                            <li ><Link to={"/Checkout"} className="white_txt" style={{fontSize:"14px",color:"white"}}></Link></li> |
-                                        
-                                        </ul>
-                                        
-                                    </div>
-
-                    </nav>  
                     <div className=" container" >
                         
                             

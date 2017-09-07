@@ -1,7 +1,6 @@
 import React from 'react';
 import {Link} from "react-router";
 import Header from '../common/Header';
-import Thankyou from '../thankyou/Thankyou';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux'; 
 import * as shoppingActions from '../../actions/shoppingActions'; 

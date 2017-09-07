@@ -1,14 +1,20 @@
 import {combineReducers} from 'redux';
-<<<<<<< HEAD
-import products from './cartReducer';
+//import products from './cartReducer';
 import productInfo from './checkoutReducer';
 import * as types from '../actions/type';
 import auth from './auth';
 
+import products from './shoppingReducer';
+import cart from './cartReducer';
+import invoiceInfo from './invoiceReducer';
+
 const appReducer = combineReducers({
     auth,
     products,
-    productInfo
+    productInfo,
+    cart,
+    invoiceInfo
+
 })
 
 const rootReducer = (state, action) => {
@@ -19,18 +25,4 @@ const rootReducer = (state, action) => {
     return appReducer(state, action);
 }
 
-=======
-
-import products from './shoppingReducer';
-import cart from './cartReducer';
-import invoiceInfo from './invoiceReducer';
-
-const rootReducer = combineReducers({
-    
-    products,
-    cart,
-    invoiceInfo
-})
-
->>>>>>> e5634d6d865b6e6541ac790451606e4487cd96af
 export default rootReducer;

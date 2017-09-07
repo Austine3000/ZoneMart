@@ -62,11 +62,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShopPage);
-
-
-
-
-
-
-
+export default connect(mapStateToProps, mapDispatchToProps)(ShopPage)

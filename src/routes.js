@@ -26,8 +26,8 @@ export default (
         <Route path="/SignUp" component={SignUpPage}/>
         <Route path="/Login" component={LoginPage} /> 
         <Route path="/Cart" component={Cart}/>   
-        <Route path="/Checkout" component={requireAuth(Checkout)} />
-        <Route path="/productInfoDisplay" component={requireAuth(productInfoDisplay)} />   
+        <Route path="/Checkout" component={Checkout} />
+        <Route path="/productInfoDisplay" component={productInfoDisplay} />   
         <Route path="/Addgoods" component={AddGoods}/>    
         <Route path="/ProductList" component={ProductList}/> 
         <Route path="/ManageProduct/:id" component={ManageProduct}/>
