@@ -49,27 +49,23 @@ class Checkout extends React.Component{
         
 		return(
             <div>
-                    <div className=" container" >
-                        
-                            
+                    <div className="container" >                
                             <p className="col-sm-10 h4 panel mypanel" >Customer Details</p>
-                        
-                        
                         <div className="panel panel-default ">
                                 <div className="col-sm-6">
-                                    <h3>Please,Enter Your Details</h3>
+                                    <h3>Please Enter Your Details</h3>
                                     
                                     <form>
                                         <div className="form-group" >
-                                            <label for="email">Name</label>
-                                            <input type="text" name="name" required="required" onChange={this.userInput} value={this.state.invoiceInfo.name} className="form-control" id="email"/>
+                                            <label>Name</label>
+                                            <input type="text" name="name" required="required" placeholder="Enter your name" onChange={this.userInput} value={this.state.invoiceInfo.name} className="form-control" id="email"/>
                                         </div>
                                         <div className="form-group" >
-                                            <label for="email">Phone Number</label>
-                                            <input type="text" required="required" name="phone" onChange={this.userInput}  value={this.state.invoiceInfo.phone} className="form-control" id="email"/>
+                                            <label>Phone Number</label>
+                                            <input type="text" required="required" name="phone" placeholder="Enter your Phone Number" onChange={this.userInput}  value={this.state.invoiceInfo.phone} className="form-control" id="email"/>
                                         </div>
                                         <div className="form-group" >
-                                        <label for="sel1">Mode of Payment:</label>
+                                        <label>Mode of Payment:</label>
                                             <select required="required" className="form-control"  name="paymode" onChange={this.userInput.bind(this)} >
                                                 <option  value="">Select a payment Mode</option>
                                                 <option value="cash on Delivery">Cash on Delivery</option>
@@ -78,7 +74,10 @@ class Checkout extends React.Component{
                                                 
                                             </select>
                                         </div>
-                                        <textarea  required="required" className="form-control"  rows="7"  placeholder="Enter Your Address"  value={this.state.invoiceInfo.address} name="address" onChange={this.userInput}></textarea>
+                                        <div className="form-group" >
+                                            <label>Shipping Address:</label>
+                                            <textarea  required="required" className="form-control"  rows="7"  placeholder="Enter your shipping address"  value={this.state.invoiceInfo.address} name="address" onChange={this.userInput}></textarea>
+                                        </div>
                                         <div className="form-group" style={{marginTop:"10px"}}>
                                             <button  className="btn btn-primary " onClick={this.goInvoice} disabled={this.state.isDisabled}>
                                                 Submit

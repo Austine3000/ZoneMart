@@ -4,10 +4,8 @@ import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux'; 
 import * as cartActions from '../../actions/cartActions'; 
 import * as shoppingActions from '../../actions/shoppingActions'; 
-
 class Cart extends React.Component{
-
-    constructor(props) {
+    constructor(props){
         super(props);
         this.state={
             cart:Object.assign([],props.cart),
@@ -18,25 +16,21 @@ class Cart extends React.Component{
             this.removeFromCart = this.removeFromCart.bind(this);
            console.log(this.props.actions);
     }
-
     componentWillReceiveProps(nextProps){
             console.log(nextProps.cart);
-			if(nextProps.cart != this.props.cart){
+            if(nextProps.cart != this.props.cart){
                
                    
-					this.setState({
-
-						cart:Object.assign([],nextProps.cart),
+                    this.setState({
+                        cart:Object.assign([],nextProps.cart),
                         products:Object.assign([],nextProps.products),
                         
-						
-			})
+                        
+            })
              console.log(this.props.cart);
              console.log(nextProps.cart);
     }
-
    }
-
     
     removeFromCart(goodId,e){
     e.preventDefault();
@@ -54,7 +48,6 @@ class Cart extends React.Component{
     this.props.actions.shoppingActions.UpdateProduct(newProducts);
      
     }
-
     AddToQty(goodID,e){
      
         e.preventDefault();
@@ -75,27 +68,23 @@ class Cart extends React.Component{
              
              console.log( newCart );
             
-
              console.log(this.state.products);
            this.props.actions.cartActions.UpdateCart(newCart);
    
    }
-
  
-
-
   ReduceQty(goodID,e){
      
         e.preventDefault();
         let dQty;
         let mockCart=Object.assign([],this.state.cart);
-        let good_target = mockCart.find(cartgood => cartgood.id == goodID);
-        if(good_target.Qty != 0){
+        let good_target = mockCart.findIndex(cartgood => cartgood.id == goodID);
+        if(good_target.Qty >1){
         dQty=good_target.Qty - 1;
          console.log(dQty);
-    }else{
-         dQty=0;
-    }
+        }else{
+            dQty=1;
+        }
     console.log(dQty);
         good_target = Object.assign({},good_target,{Qty:dQty});
             console.log(good_target.id);
@@ -111,12 +100,10 @@ class Cart extends React.Component{
              
              console.log( newCart );
             
-
              console.log(this.state.products);
            this.props.actions.cartActions.UpdateCart(newCart);
    
    }
-
     render() {
          var style2={
                 fontSize:"12px",
@@ -126,9 +113,8 @@ class Cart extends React.Component{
                 
                 
             }
-
         let Total=0;
-        console.log(this.props.cart);
+console.log(this.props.cart);
              
             let  tableRow  = (this.state.cart.length > 0) ? this.state.cart.map( (cartgood,index) => 
                                                         
@@ -146,25 +132,21 @@ class Cart extends React.Component{
                     <td > <button name={`btn${index}`} onClick={this.AddToQty.bind(this,cartgood.id)} className="btn btn-info btnqty btn-xs pull-right" role="button"><span className="glyphicon glyphicon-plus"></span></button></td>
                     <td > <button name={`btn${index}`} onClick={this.ReduceQty.bind(this,cartgood.id)} className="btn btn-info btnqty btn-xs btn-danger " role="button"><span className="glyphicon glyphicon-minus"></span></button></td>
                 </tr>
-
                             ): <tr className="h3">Cart is EMPTY!</tr> ;
-
         
-              
+            let isDisable = true  
                                                           
             if(this.props.cart.length > 0) { 
-
                 let amountList =  this.props.cart.map( (cartgood,index) =>  cartgood.Price * cartgood.Qty);
                 amountList.reduce((x, y) => x + y);        
                 Total =  amountList.reduce((x, y) => x + y);
+                isDisable = false;
             }                                      
-
                                                               
         
-		return(
-            <div>
-                        
-                    <div className=" container " >
+        return(
+            <div className="container-fluid">
+                    <div className="container" >
                         
                             
                             <p className="col-sm-10 h4 panel mypanel" >Please, Confirm Your Order and Checkout Your Cart </p><div className="col-sm-2 amt ">Total Amount: <span className="h2 redz">{"$" + Total}</span></div>
@@ -185,6 +167,7 @@ class Cart extends React.Component{
                                         </tr>
                                     </thead>
                                         <tbody>
+                                        
                                               {tableRow} 
                                         </tbody>        
                                    
@@ -198,24 +181,16 @@ class Cart extends React.Component{
                         </div>    
                         
                     </div>      
-                    <div className="col-sm-3 col-sm-offset-9" style={{paddingLeft:"2%",marginTop:"35px"}} >
+                    <div className="col-sm-6 pull-right" style={{paddingLeft:"2%",marginTop:"35px"}} >
                         <Link style={style2}   to={"/"} className="btn btn-success spacingRyt">CONTINUE SHOPPING</Link>
-                        <Link style={style2} to={"/Checkout"} className="btn btn-warning">CHECKOUT</Link>
+                        <Link style={style2} to={"/Checkout"} disabled={isDisable} className="btn btn-warning">CHECKOUT</Link>
                      </div>
-
-
                     
                 
             </div>
-			)
-
-
-
-	}
-
-
+            )
+    }
 }
-
 function mapStateToProps(state, ownProps) {
         
         return {
@@ -223,7 +198,6 @@ function mapStateToProps(state, ownProps) {
             cart: state.cart
         };
     }
-
     function mapDispatchToProps(dispatch) {  
    return {
               actions:  {
@@ -232,5 +206,4 @@ function mapStateToProps(state, ownProps) {
               }
           }
     }
-export default connect(mapStateToProps, mapDispatchToProps) (Cart);
-
+export default connect(mapStateToProps,mapDispatchToProps) (Cart);

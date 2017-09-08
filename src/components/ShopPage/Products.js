@@ -1,42 +1,51 @@
 import React from 'react';
 import {Link} from "react-router";
-
-class Products extends React.Component{
-    
-    render() {
-		return(
-            <section className="cover" >
+const  Products = ({showDetails,products,AddtoCart}) => {
+   
+   
+  
+        var style2={
+                fontSize:"24px",
+                color:"blue",
+                textDecoration:"none",
+                hover: {textDecoration: "underline"},
+                padding:"0px",
+                margin:"0px",
+                
+                
+            } 
+        return (
+            <div className="cover" >
                 <div className="row  ">
-                    <div className="col-sm-12"  >
-
-                        {this.props.ProductList.map(Product =>
-                             <div className="col-sm-3 col-md-3" key={Product.id}>
-                                    
-                                <div className="thumbnail">
-                                    <img className="ProductImage" src={Product.Image} alt=".." />
-                                    <div className="caption">
-                                        <h3 className="color1">{Product.Name}</h3>
-                                        <p>{Product.Description}</p>
-                                        <p>
-                                            <button onClick={() => this.props.SaveCartInfo(Product)} className="btn btn-primary pull-right" role="button">
-                                                Add to Cart
-                                            </button> 
-                                            <span className="font1">${Product.Price}</span>
-                                        </p>
-                                    </div>
-                                </div>
-                           
-                            </div>
-                        )}
+                        <div className="col-sm-12"  >
                         
-                    </div>       
+                            {products.map( (product,index) => 
+                                <div className="col-sm-4 col-md-3" key={index}>
+                                    <div className="thumbnail">
+                                        
+                                        <div className="caption">
+                                            <h3 className="color1 " style={{marginTop:"3px"}}>{product.Name}</h3>
+                                            
+                                            <div className="hand" style={{marginBottom:"5px"}} onClick={showDetails.bind(this,product.id)}><span><img src={product.Image}  style={{width:"100%"}} height="200" alt={product.Name}/></span></div>
+                                            <div>
+                                                <p className="pull-right" >
+                                                    <button  onClick={AddtoCart.bind(this,product.id)} className="btn btn-success  pull-right" role="button">Add To Cart</button>
+                                                
+                                                </p>
+                                                    <span className="h3 color2">{"$" + product.Price}</span>
+                                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                            
+                                </div>
+                            )}
+                            
+                        
+                        </div>
                 </div>   
-            </section>
-        )
-	}
-
-
-}
-
-
+                
+            </div>
+            )
+    }
 export default Products;

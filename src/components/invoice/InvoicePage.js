@@ -70,7 +70,7 @@ class InvoicePage extends React.Component {
                 
             return (
 
-                <div>
+                <div className="container-fluid">
                     <div className="container col-sm-offset-2" style={{marginTop:"20px"}}>
                             <div className="row">
 
@@ -126,12 +126,11 @@ class InvoicePage extends React.Component {
                                                 </tbody>        
                                             
                                         </table>
-                                        <div className="col-sm-4 pull-right" >
+                                        <div className="col-sm-8 pull-right" >
                                             <h4 className="text-success">Total Amount:<span style={{color:"#4a0807",fontSize:"20px"}}> {"$"+ Total}</span></h4>
-                                            <button onClick={this.onDownload.bind(this)}className="btn btn-success btn-xs">Download Invoice</button>
-                                            <button type="button" onClick={() => this.clearState()} className="btn btn-success">Finish</button>
+                                            <button type="button" onClick={this.onDownload.bind(this)}className="btn btn-success spacingRyt">Download Invoice</button>
+                                            <button type="button" onClick={() => this.clearState()} className="btn btn-primary">Finish</button>
                                         </div>
-                                        
                                 </div>
                                 
                             </div>        

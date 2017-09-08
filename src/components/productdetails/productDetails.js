@@ -86,35 +86,7 @@ class ProductDetails extends React.Component{
        const {Name,id,Qty,Description,Price,Image,choice,isAdded} = this.props.product;
 
 		return(
-            <div >
-                <nav className="navbar navbar-inverse navbg-blue navbar-static-top" style={{margin: "0px", height:"70px"}} >
-                                 
-                    <div className="navbar-header">
-
-                        <Link to={"/"} className="navbar-brand apptxt" ><span className="apptxt  blue glyphicon glyphicon-shopping-cart"><span className="afont">eMart</span></span></Link>
-                        
-                        <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-
-                            <span className="icon-bar"></span>
-                            <span className="icon-bar"></span>
-                            <span className="icon-bar"></span>
-                                    
-                        </button>
-
-                    </div>
-
-                    <div className="collapse  navbar-collapse" id="myNavbar">
-                        <ul className="nav navbar-nav navbar-right" style={{marginRight: "5px"}}>
-                            
-                            <li ><Link to={"/"} className="white_txt" style={{fontSize:"12px",color:"white"}}>Product page</Link></li>
-                            <li ><Link to={"/Cart"} className="white_txt" style={{fontSize:"12px",color:"white"}}>View My Cart</Link></li>
-                            
-                        
-                        </ul>
-                        
-                    </div>
-
-                </nav>  
+            <div className="container-fluid text-center">
                 <div  style={{marginTop:"40px"}}>
 
                     <div className="col-sm-3" >
