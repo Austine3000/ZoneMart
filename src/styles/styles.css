@@ -294,21 +294,17 @@ border-radius:0px;
 		  font-size: 14px;
 	  }
   
-.resizeCarousel {
-	height: 470px;
-    width: 1000px;
-    margin: 25px auto;
-}
+        
+
+
+
+
+
 
 .wrapa{
 	
 	width: 60%;
 	margin:45px auto;
-}
-
-.thumbnail .ProductImage {
-	height: 166px;
-	width: 223px;
 }
 
 
@@ -354,11 +350,6 @@ border-radius:0px;
 	padding-left:2px;
 	list-style:none;
 	font-size: 12px;
-}
-
-.dtStyle {
-	padding: auto;
-	margin: auto;
 }
 
 .list-group2 >li:hover,
@@ -409,6 +400,7 @@ btn_link{
 }
 /*/////////////////////////////////////////////////////////////*/
 .ecaroDiv{
+	
 	width:100%;
 	padding-right: 0px;
     padding-left: 0px;
@@ -441,14 +433,6 @@ height:867px
 	margin-top: 10px;
 }
 
-.bg-grey {
-    background-color: #f6f6f6;
-}
-
-.container-fluid {
-    padding: 15px 50px;
-}
-
 .btnqty{
 	margin-left:5px
 }
@@ -465,13 +449,28 @@ height:867px
 	margin-right:5px;
 }
 .mypanel{
-	height:40px;
-	padding-top:10px;
+	
+	padding:5px;
 	background:burlywood;
 	color:white
 }
 
+.list-result{
+		position:relative;
+		z-index:10;
+		
+	}
 
+	.listStyle{
+		width:80%;
+		list-style:none;
+		background: #f8e6e4;
+		border-bottom: 1px solid grey;
+		padding: 7px;
+		font-size:14px;
+		color:#215286;
+		font-family: 'Arial Narrow';
+	}
 .amt{
 	background: #040306;
 	color:#eee8e8;
@@ -540,6 +539,51 @@ height:867px
 	.capital{
 		text-transform: capitalize;
 	}
-	.spacingRyt{
-		margin-right: 28px
+	.caroResize{
+		
+		margin-left:auto;
+		margin-right: auto;
+		width:80%
+
+	}
+	.searchdiv{
+		height:33px;
+		
+		margin-left:auto;
+		margin-bottom:5px;
+		width:40%;
+		margin-right:auto;
+		
+	}
+	.searchText{
+		height:30px;
+		width:80%;
+		border:0px;
+		display:inline-block;
+		background:lightgray;
+		color:#131217;
+		padding:5px;
+		text-transform: capitalize;
+	}
+	.searchBtn{
+		height:30px;
+		border:0px;
+		width:20%;
+		border-radius:0px;
+		margin-top:-3px
+	}
+	.list_result{
+		position:relative;
+		
+		
+	}
+	._listStyle{
+		width:80%;
+		list-style:none;
+		background: #f8e6e4;
+		border-bottom: 1px solid grey;
+		padding: 7px;
+		font-size:14px;
+		color:#215286;
+		font-family: 'Arial Narrow';
 	}

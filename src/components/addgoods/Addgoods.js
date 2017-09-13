@@ -36,14 +36,33 @@ class ProductList extends React.Component{
         console.log(e.target.value);
           console.log(this.state);
    }
-  
+   
+   uploadImg() {
+		filepicker.pick(
+			{
+		    mimetype: 'image/*',
+		    container: 'window',
+		    services: ['COMPUTER', 'FACEBOOK', 'INSTAGRAM', 'URL', 'IMGUR', 'PICASA'],
+		    openTo: 'COMPUTER'
+		  },
+		  function(Blob){
+		    console.log(JSON.stringify(Blob));
+		   let handler = Blob.url.substring(Blob.url.lastIndexOf('/') + 1);
+            handler ="https://cdn.filestackcontent.com/" +  handler;
+		    document.getElementById('ImageBtn').dataset.handler = handler;
+		  },
+		  function(FPError){
+		  	console.log(FPError.toString());
+		  }
+		);
+	}
+
     AddToGoods(e){
         e.preventDefault();
-        console.log(this.state);
-        console.log(this.props.products);
+        this.state.Image=document.getElementById('ImageBtn').dataset.handler;
         this.props.actions.addToGoods(this.state);
         browserHistory.push('/ProductList');  
-    }
+  }
 
     render() {
             var style2={
@@ -84,9 +103,10 @@ class ProductList extends React.Component{
                                             <input type="text" name="Price" onChange={this.onType} value={this.state.Price} className="form-control"/>
                                         </div>
                                         
-                                        <div className="form-group" style={{width:"70%"}}>
-                                            <label for="email">Image</label>
-                                            <input type="file" className="form-control" name="Image"/>
+                                         <div className="form-group" style={{width:"70%"}}>
+                                             <button type="button" onClick={this.uploadImg} id="ImageBtn" name="Image"  className="btn btn-primary "  >
+                                                Upload Image : <small>Click to Select Image</small>
+                                            </button>
                                         </div>
                                        
                                         <textarea  className="form-control" value={this.state.Description} rows="7" style={{width:"70%"}} placeholder="Enter Goods Description"   name="Description" onChange={this.onType}></textarea>
