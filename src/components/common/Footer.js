@@ -4,7 +4,7 @@ import { Link, IndexLink } from 'react-router';
 class Footer extends React.Component {
     render() {
         return (
-        <div className="container-fluid bg-grey">
+        <div className="container-fluid bg-grey footerStyle">
             <h2 className="text-center">CONTACT</h2>
             <div className="row">
                 <div className="col-sm-5">

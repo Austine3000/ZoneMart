@@ -18,6 +18,7 @@ import ProductList from './components/productlist/ProductList';
 import Checkout from './components/checkout/Checkout';
 import InvoicePage from './components/invoice/InvoicePage';
 import ProductDetails from './components/productdetails/productDetails';
+import Payment from './components/checkout/Payment'
 
 
 export default (
@@ -33,5 +34,6 @@ export default (
         <Route path="/ManageProduct/:id" component={ManageProduct}/>
         <Route path="/InvoicePage" component={InvoicePage}/>  
         <Route path="/details/:id" component={ProductDetails}/>
+        <Route path="/Payment" component={Payment}/>
     </Route>
 );

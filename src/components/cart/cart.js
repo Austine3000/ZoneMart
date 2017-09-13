@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux'; 
 import * as cartActions from '../../actions/cartActions'; 
 import * as shoppingActions from '../../actions/shoppingActions'; 
+import toastr from 'toastr';
+
 class Cart extends React.Component{
     constructor(props){
         super(props);
@@ -46,6 +48,8 @@ class Cart extends React.Component{
                     return (a.id - b.id);
                 });
     this.props.actions.shoppingActions.UpdateProduct(newProducts);
+    //toastr.options.timeOut = 60;
+    toastr.error('Item has been removed from cart');
      
     }
     AddToQty(goodID,e){
@@ -70,38 +74,42 @@ class Cart extends React.Component{
             
              console.log(this.state.products);
            this.props.actions.cartActions.UpdateCart(newCart);
+
+           //toastr.info('Item has been increase by one');
    
    }
  
-  ReduceQty(goodID,e){
+  ReduceQty(goodID,e) {
      
         e.preventDefault();
         let dQty;
         let mockCart=Object.assign([],this.state.cart);
-        let good_target = mockCart.findIndex(cartgood => cartgood.id == goodID);
+        let good_target = mockCart.find(cartgood => cartgood.id == goodID);
         if(good_target.Qty >1){
         dQty=good_target.Qty - 1;
          console.log(dQty);
         }else{
             dQty=1;
         }
-    console.log(dQty);
+        console.log(dQty);
         good_target = Object.assign({},good_target,{Qty:dQty});
-            console.log(good_target.id);
-            console.log(good_target);
+        console.log(good_target.id);
+        console.log(good_target);
         good_target = Object.assign({},good_target);
                
                 
-               let newCart =[...mockCart.filter(cartgood => cartgood.id != good_target.id), Object.assign({}, good_target)];
-                newCart= newCart.sort(function(a, b) {
-                 return (a.id - b.id);
-               });
+        let newCart =[...mockCart.filter(cartgood => cartgood.id != good_target.id), Object.assign({}, good_target)];
+        newCart= newCart.sort(function(a, b) {
+            return (a.id - b.id);
+        });
             
              
              console.log( newCart );
             
              console.log(this.state.products);
            this.props.actions.cartActions.UpdateCart(newCart);
+
+           //toastr.error('Item has been reduced by one');
    
    }
     render() {

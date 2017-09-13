@@ -63,57 +63,31 @@ class ProductList extends React.Component{
 		return(
 
                 <div>
-                        <nav className="navbar navbar-inverse navbg-blue navbar-static-top" style={{margin: "0px", height:"70px"}} >
-                                 
-                                    <div className="navbar-header"  >
-
-                                        <Link to={"/"} className="navbar-brand apptxt" ><span className="apptxt  blue glyphicon glyphicon-shopping-cart"><span className="afont">eMart</span></span></Link>
-                                        
-                                        <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-
-                                            <span className="icon-bar"></span>
-                                            <span className="icon-bar"></span>
-                                            <span className="icon-bar"></span>
-                                                    
-                                        </button>
-
-                                  </div>
-
-                                    <div className="collapse  navbar-collapse" id="myNavbar">
-                                        <ul className="nav navbar-nav navbar-right" style={{marginRight: "5px"}}>
-                                            <li ><Link to={"/"} className="white_txt" style={{fontSize:"14px",color:"white"}}></Link></li>
-                                            <li ><Link to={"/Checkout"} className="white_txt" style={{fontSize:"14px",color:"white"}}></Link></li> |
-                                        
-                                        </ul>
-                                        
-                                    </div>
-
-                        </nav>  
-                        <div className="container">
-                            <h2 className="col-sm-8 text-info panel"> Products
-                                <div className="inlane h5 pull-right hand ">
-                                    <Link style={style2} to={"/"}><button className="btn btn-xs mrg-ryt">Home</button></Link>
-                                    <Link style={style2} to={"/Addgoods"}><button className="btn btn-xs"><span className="glyphicon glyphicon-plus text-warning"></span>Add Product</button></Link>
-                                </div>
-                                </h2>
-                            <div className="col-sm-6">
-                                <ul className="list-group">
-                                    {this.state.products.map((product,index) =>
-                                        
-            
-                                            <li key={index}  className="list-group-item">{product.Name}
-                                                <span className="hand badge"><Link style={style}  to={"/ManageProduct/"+ product.id}>Edit Info</Link></span> 
-                                                <span className="hand badge text-danger" onClick={this.onDelete.bind(this,product.id) } >Delete</span>
-                                                </li>
-
-                                        )
-                                    }
-
-
-                                </ul>
-                                
+                    <div className="container">
+                        <h2 className="col-sm-8 text-info panel"> Products
+                            <div className="inlane h5 pull-right hand ">
+                                <Link style={style2} to={"/"}><button className="btn btn-xs mrg-ryt">Home</button></Link>
+                                <Link style={style2} to={"/Addgoods"}><button className="btn btn-xs"><span className="glyphicon glyphicon-plus text-warning"></span>Add Product</button></Link>
                             </div>
+                            </h2>
+                        <div className="col-sm-6">
+                            <ul className="list-group">
+                                {this.state.products.map((product,index) =>
+                                    
+        
+                                        <li key={index}  className="list-group-item">{product.Name}
+                                            <span className="hand badge"><Link style={style}  to={"/ManageProduct/"+ product.id}>Edit Info</Link></span> 
+                                            <span className="hand badge text-danger" onClick={this.onDelete.bind(this,product.id) } >Delete</span>
+                                            </li>
+
+                                    )
+                                }
+
+
+                            </ul>
+                            
                         </div>
+                    </div>
                 </div>
 			)
 

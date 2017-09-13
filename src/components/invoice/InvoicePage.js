@@ -50,7 +50,7 @@ class InvoicePage extends React.Component {
 
             let Total;
 
-            const {name,phone,paymode,address}= this.props.invoiceInfo;
+            const {name,phone,paymode,address,address2,city}= this.props.invoiceInfo;
 
             if(this.props.cart.length > 0) { 
 
@@ -83,8 +83,9 @@ class InvoicePage extends React.Component {
                                     
                                 </div>
                                 <div className="col-sm-6" >
-                                    <p className="pull-left h6">Address:</p><div style={{color:"#801c23"}} className="addressdiv pull-left h5">{address}</div>
-                                    
+                                    <p className="h6"> City: <span style={{color:"#801c23"}} className="addressdiv h5">{city}</span></p>
+                                    <p className="h6"> Shipping Address 1: <span style={{color:"#801c23"}} className="addressdiv  h5">{address}</span></p>
+                                    <p className="h6"> Shipping Address 2: <span style={{color:"#801c23"}} className="addressdiv h5">{address2}</span></p>
                                 </div>
                                     
                             </div>

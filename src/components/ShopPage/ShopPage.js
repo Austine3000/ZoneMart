@@ -8,6 +8,8 @@ import Carousel from './Carousel';
 import Products from './Products';
 import Header from '../common/Header';
 import { browserHistory } from 'react-router';
+import toastr from 'toastr';
+
 class ShopPage extends React.Component{
     constructor(props){
         super(props);
@@ -30,13 +32,13 @@ class ShopPage extends React.Component{
   componentWillReceiveProps(nextProps){
  console.log(this.props);     
 console.log(nextProps);
-            if(nextProps.products != this.props.products){
-               
-                    this.setState({
-                        products:Object.assign([],nextProps.products)
-                        
-            })
-             
+        if(nextProps.products != this.props.products){
+            
+                this.setState({
+                    products:Object.assign([],nextProps.products)
+                    
+        })
+            
     }
    }
     AddtoCart(ID,e){
@@ -62,6 +64,8 @@ console.log(nextProps);
             this.props.actions.cartActions.AddToCart(cartgoods) 
             
         }
+        //toastr.options.timeOut = 35;
+        toastr.success('Item has been added to cart');
     }
        
    showDetails(ID,e){

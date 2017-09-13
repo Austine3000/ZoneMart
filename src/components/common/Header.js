@@ -11,19 +11,19 @@ class Header extends React.Component {
     }
 
     render() {
-        
+    
         const { isAuthenticated } = this.props.auth;
 
         const userLinks = (
             <ul className="nav navbar-nav navbar-right" style={{marginRight: "5px"}}>
-                <li><Link to={"/Cart"} className="white_txt" style={{fontSize:"14px"}}><span className="glyphicon glyphicon-shopping-cart"></span> Cart<span className="badge">{this.props.products}</span></Link></li>
+                <li><Link to={"/Cart"} className="white_txt" style={{fontSize:"14px"}}><span className="glyphicon glyphicon-shopping-cart"></span> Cart<span className="badge">{this.props.cart.length}</span></Link></li>
                 <li><a href="#" style={{fontSize:"14px"}} onClick={this.logout.bind(this)}>Logout</a></li>
             </ul>
         );
 
         const guestLinks = (
             <ul className="nav navbar-nav navbar-right" style={{marginRight: "5px"}}>
-                <li><Link to={"/Cart"} className="white_txt" style={{fontSize:"14px"}}><span className="glyphicon glyphicon-shopping-cart"></span> Cart<span className="badge">{this.props.products}</span></Link></li>
+                <li><Link to={"/Cart"} className="white_txt" style={{fontSize:"14px"}}><span className="glyphicon glyphicon-shopping-cart"></span> Cart <span className="badge">{this.props.cart.length}</span></Link></li>
                 <li ><Link to={"/SignUp"} className="white_txt" style={{fontSize:"14px"}}  ><span className="glyphicon glyphicon-user "></span> Sign Up</Link></li>
                 <li><Link style={{fontSize:"14px"}} to={"/Login"} className="white_txt"  ><span className="glyphicon glyphicon-log-in"></span> Sign In</Link></li>
             </ul>
@@ -59,7 +59,8 @@ Header.propTypes = {
 
 function mapStateToProps(state) {
     return {
-        auth: state.auth
+        auth: state.auth,
+        cart: state.cart
     }
 }
 

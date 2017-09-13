@@ -445,6 +445,10 @@ height:867px
     background-color: #f6f6f6;
 }
 
+.footerStyle {
+	margin-top: 80px;
+}
+
 .container-fluid {
     padding: 15px 50px;
 }

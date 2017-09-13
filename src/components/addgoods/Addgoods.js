@@ -26,6 +26,25 @@ class ProductList extends React.Component{
         this.AddToGoods = this.AddToGoods.bind(this);
         console.log(props.products);
     }
+
+    uploadImg() {
+		filepicker.pick(
+			{
+		    mimetype: 'image/*',
+		    container: 'modal',
+		    services: ['COMPUTER', 'FACEBOOK', 'INSTAGRAM', 'URL', 'IMGUR', 'PICASA'],
+		    openTo: 'COMPUTER'
+		  },
+		  function(Blob){
+		    console.log(JSON.stringify(Blob));
+		    const handler = Blob.url.substring(Blob.url.lastIndexOf('/') + 1);
+		    document.getElementById('button-upload').dataset.handler = handler;
+		  },
+		  function(FPError){
+		  	console.log(FPError.toString());
+		  }
+		);
+	}
    
    onType(e){
         e.preventDefault();
@@ -39,8 +58,10 @@ class ProductList extends React.Component{
   
     AddToGoods(e){
         e.preventDefault();
+        const handler = document.getElementById('button-upload').dataset.handler;
         console.log(this.state);
         console.log(this.props.products);
+        
         this.props.actions.addToGoods(this.state);
         browserHistory.push('/ProductList');  
     }
@@ -86,7 +107,11 @@ class ProductList extends React.Component{
                                         
                                         <div className="form-group" style={{width:"70%"}}>
                                             <label for="email">Image</label>
-                                            <input type="file" className="form-control" name="Image"/>
+                                            <div className="text-center dropup">
+                                                <button id="button-upload" type="button" className="btn btn-default filepicker" onClick={() => this.uploadImg()}>
+                                                Upload <span className="caret"></span>
+                                                </button>   
+                                            </div> 
                                         </div>
                                        
                                         <textarea  className="form-control" value={this.state.Description} rows="7" style={{width:"70%"}} placeholder="Enter Goods Description"   name="Description" onChange={this.onType}></textarea>
