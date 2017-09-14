@@ -8,9 +8,9 @@ class Carousel extends React.Component{
         
 
 		return(
-            <div >
+            <div  >
                     
-                <div id="carousel-example-generic" className="carousel slide resizeCarousel" data-ride="carousel" >
+                <div id="carousel-example-generic" className="carousel slide caroResize" data-ride="carousel" >
   
                     <ol className="carousel-indicators">
                         <li data-target="#carousel-example-generic" data-slide-to="0" className="active"></li>
@@ -21,19 +21,19 @@ class Carousel extends React.Component{
   
                     <div className="carousel-inner ecaroDiv" role="listbox">
                         <div className="item active ">
-                        <img src={require("../../image/banner.jpg")} width="1000px" alt="..."/>
+                        <img src={require("../../image/banner.jpg")} width="1400"   alt="..."/>
                         <div className="carousel-caption">
                             ...
                         </div>
                         </div>
                         <div className="item">
-                        <img src={require("../../image/write.jpg")} width="1000px" alt="..."/>
+                        <img src={require("../../image/write.jpg")} width="1400" alt="..."/>
                         <div className="carousel-caption">
                             ...
                         </div>
                         </div>
                         <div className="item active ">
-                        <img src={require("../../image/number3.jpg")} width="1000px" alt="..."/>
+                        <img src={require("../../image/number3.jpg")} width="1400" alt="..."/>
                         <div className="carousel-caption">
                             ...
                         </div>
