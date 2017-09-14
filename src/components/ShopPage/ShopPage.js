@@ -67,7 +67,7 @@ console.log(nextProps);
             this.props.actions.cartActions.AddToCart(cartgoods) 
             
         }
-        //toastr.options.timeOut = 35;
+        toastr.options.timeOut = 35;
         toastr.success('Item has been added to cart');
     }
 

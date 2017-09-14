@@ -32,7 +32,7 @@ const  Products = ({showDetails,products,AddtoCart}) => {
                                                     <button  onClick={AddtoCart.bind(this,product.id)} className="btn btn-success  pull-right" role="button">Add To Cart</button>
                                                 
                                                 </p>
-                                                    <span className="h3 color2">{"$" + product.Price}</span>
+                                                    <span className="h3 color2">&#8358;{product.Price}</span>
                                                     
                                             </div>
                                         </div>

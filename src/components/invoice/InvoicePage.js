@@ -115,8 +115,8 @@ class InvoicePage extends React.Component {
                                                             <th scope="row">{index+1}</th>
                                                             <td>{cartgood.Name}</td>
                                                             <td>{cartgood.Qty}</td>
-                                                            <td>{"$" + cartgood.Price}</td>
-                                                            <td>{"$" + cartgood.Price * cartgood.Qty}</td>
+                                                            <td>&#8358;{cartgood.Price}</td>
+                                                            <td>&#8358;{cartgood.Price * cartgood.Qty}</td>
                                             
                                                         </tr>
                                                     
@@ -128,7 +128,7 @@ class InvoicePage extends React.Component {
                                             
                                         </table>
                                         <div className="col-sm-8 pull-right" >
-                                            <h4 className="text-success">Total Amount:<span style={{color:"#4a0807",fontSize:"20px"}}> {"$"+ Total}</span></h4>
+                                            <h4 className="text-success">Total Amount:<span style={{color:"#4a0807",fontSize:"20px"}}>&#8358;{Total}</span></h4>
                                             <button type="button" onClick={this.onDownload.bind(this)}className="btn btn-success spacingRyt">Download Invoice</button>
                                             <button type="button" onClick={() => this.clearState()} className="btn btn-primary">Finish</button>
                                         </div>

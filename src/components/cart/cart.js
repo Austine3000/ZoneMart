@@ -48,7 +48,7 @@ class Cart extends React.Component{
                     return (a.id - b.id);
                 });
     this.props.actions.shoppingActions.UpdateProduct(newProducts);
-    //toastr.options.timeOut = 60;
+    toastr.options.timeOut = 35;
     toastr.error('Item has been removed from cart');
      
     }
@@ -131,8 +131,8 @@ console.log(this.props.cart);
                     <th scope="row">{index+1}</th>
                     <td>{cartgood.Name}</td>
                     <td>{cartgood.Qty}</td>
-                    <td>{"$" + cartgood.Price}</td>
-                    <td>{"$" +  cartgood.Price * cartgood.Qty}</td>
+                    <td>&#8358;{cartgood.Price}</td>
+                    <td>&#8358;{cartgood.Price * cartgood.Qty}</td>
                     <td>
                         <button onClick={this.removeFromCart.bind(this,cartgood.id)} className="btn btn-danger btn-xs">Remove</button>
                         
@@ -157,7 +157,7 @@ console.log(this.props.cart);
                     <div className="container" >
                         
                             
-                            <p className="col-sm-10 h4 panel mypanel" >Please, Confirm Your Order and Checkout Your Cart </p><div className="col-sm-2 amt ">Total Amount: <span className="h2 redz">{"$" + Total}</span></div>
+                            <p className="col-sm-10 h4 panel mypanel" >Please, Confirm Your Order and Checkout Your Cart </p><div className="col-sm-2 amt ">Total Amount: <span className="h2 redz">&#8358;{Total}</span></div>
                             
                         
                         <div className="col-sm-8">

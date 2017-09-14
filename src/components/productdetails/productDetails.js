@@ -95,7 +95,7 @@ class ProductDetails extends React.Component{
                     <div className="col-sm-3">
 
                         <h1>{Name}</h1>
-                        <h2 className="text-danger">{"$"+Price}</h2>
+                        <h2 className="text-danger">&#8358;{Price}</h2>
                         <hr/>
                         <div className="describe">{Description}</div>
                       

@@ -377,9 +377,6 @@ border-radius:0px;
 	left:10px;
 	padding-left:20px;
 	width: 90%;
-
-	
-	
 }
 .tools li > a, .tools li{
 	display:inline-block;
@@ -414,6 +411,11 @@ height:867px
 .color1{
 	color:#e63462;
 }
+
+.spacingRyt {
+	margin: 5px;
+}
+
 .font1{
 	font-size: 16px;
 }
