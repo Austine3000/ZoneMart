@@ -113,14 +113,10 @@ class Cart extends React.Component{
    
    }
     render() {
-         var style2={
-                fontSize:"12px",
-               
-                textDecoration:"none",
-               
-                
-                
-            }
+        var style2={
+            fontSize:"12px",
+            textDecoration:"none",   
+        }
         let Total=0;
 console.log(this.props.cart);
              
@@ -153,7 +149,7 @@ console.log(this.props.cart);
                                                               
         
         return(
-            <div className="container-fluid">
+            <div className="MainContentStyle">
                     <div className="container" >
                         
                             

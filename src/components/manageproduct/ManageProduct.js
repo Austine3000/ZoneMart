@@ -44,7 +44,7 @@ class ManageProduct extends React.Component{
                                      
         const {Name,id,Description,Qty,Price,Image} = this.state.product;
 		return(
-            <div>
+            <div className="MainContentStyle">
                 
                    
                      <nav className="navbar navbar-inverse navbg-blue navbar-static-top" style={{margin: "0px", height:"70px"}} >

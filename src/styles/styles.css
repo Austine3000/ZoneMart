@@ -416,12 +416,21 @@ height:867px
 	margin: 5px;
 }
 
+.productdetailthumbnail {
+	width: 450px;
+	height: 230px;
+}
+
 .font1{
 	font-size: 16px;
 }
 .cover{
 	position:relative;
 	top:0px;
+}
+
+.MainContentStyle {
+	padding-top: 80px;
 }
 .priceCal{
 	

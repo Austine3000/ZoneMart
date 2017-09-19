@@ -56,7 +56,7 @@ class LoginPage extends React.Component {
         const { errors, username, password, isLoading } = this.state;
 
         return (         
-            <div >
+            <div className="MainContentStyle">
                 <div className="signbody">
                     <div className="col-xs-8 col-xs-offset-2 col-md-4 well centralised col-md-offset-4 div-round">
                         <span>SIGN IN</span>

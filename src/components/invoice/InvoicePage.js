@@ -70,7 +70,7 @@ class InvoicePage extends React.Component {
                 
             return (
 
-                <div className="container-fluid">
+                <div className="MainContentStyle">
                     <div className="container col-sm-offset-2" style={{marginTop:"20px"}}>
                             <div className="row">
 

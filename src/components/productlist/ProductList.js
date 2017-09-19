@@ -62,7 +62,7 @@ class ProductList extends React.Component{
         
 		return(
 
-                <div>
+                <div className="MainContentStyle">
                     <div className="container">
                         <h2 className="col-sm-8 text-info panel"> Products
                             <div className="inlane h5 pull-right hand ">

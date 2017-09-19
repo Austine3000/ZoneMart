@@ -30,7 +30,8 @@ class Header extends React.Component {
         );
         return (
             <div>
-                <nav className="navbar navbar-inverse navbg-blue navbar-static-top" style={{margin: "0px"}} >     
+                <nav className="navbar navbar-default navbg-blue navbar-fixed-top" style={{margin: "0px"}} >     
+
                     <div className="navbar-header"  >
                         <Link to={"/"} className="navbar-brand apptxt" ><span className="apptxt  blue glyphicon glyphicon-shopping-cart"><span className="afont">ZoneMart</span></span></Link>
                         <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -45,6 +46,7 @@ class Header extends React.Component {
                     <div className="collapse  navbar-collapse" id="myNavbar"> 
                         { isAuthenticated ? userLinks : guestLinks }
                     </div>
+                    
                 </nav>
             </div>
  

@@ -96,7 +96,7 @@ class ProductList extends React.Component{
         
 		return(
 
-            <div>
+            <div className="MainContentStyle">
                     <div className=" container" >
                         
                             

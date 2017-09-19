@@ -85,26 +85,36 @@ class ProductDetails extends React.Component{
         const {iD} = this.state;
        const {Name,id,Qty,Description,Price,Image,choice,isAdded} = this.props.product;
 
+       var style2={
+            fontSize:"15px",
+            color: "#000",
+            textDecoration:"none",   
+        }
+
 		return(
-            <div className="container-fluid text-center">
-                <div  style={{marginTop:"40px"}}>
-
-                    <div className="col-sm-3" >
-                        <img src={Image}  style={{width:"100%"}} height="300" alt={Name}/>
-                    </div>
-                    <div className="col-sm-3">
-
-                        <h1>{Name}</h1>
-                        <h2 className="text-danger">&#8358;{Price}</h2>
-                        <hr/>
-                        <div className="describe">{Description}</div>
-                      
-                       
-                        <button  onClick={this.onAdded.bind(this,iD)} className={(isAdded ) ? "btn btn-danger btn-xs pull-right" : "btn btn-success btn-xs pull-right" }>{choice}</button>
-                    </div>
-                   
-                </div>
-                
+            <div className="MainContentStyle">
+                <div className="row">
+                    <div className="col-md-offset-2 col-md-8">
+					    <ol className="breadcrumb">
+					        <li><Link to="/" style={style2}>Home</Link></li>
+					        <li className="active">{Name}</li>
+					    </ol>
+                         <div className="thumbnail">
+                            <img className="productdetailthumbnail" src={Image} alt=""></img>
+                            <div className="caption-full">
+                                <h3 className="pull-right text-danger">&#8358;{Price}</h3>
+                                <h3>{Name}</h3>
+                                <p>{Description}</p>   
+                            </div> 
+                        </div>
+                        <div className="text-center">
+                            <button onClick={this.onAdded.bind(this,iD)} className={(isAdded ) ? "btn btn-danger btn-cart" : "btn btn-success btn-cart" }>
+						        {choice}
+						    </button>
+					    </div>
+      	            </div>
+      	            <div className="col-md-2"></div>
+                </div> 
             </div>
 			)
 

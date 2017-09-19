@@ -88,7 +88,7 @@ class Checkout extends React.Component {
     const { errors, invoiceInfo, isLoading } = this.state; 
         
 		return(
-            <div>
+            <div className="MainContentStyle">
                 <div className="container" >                
                         <p className="col-sm-10 h4 panel mypanel" >Please enter your billing details </p><div className="col-sm-2 amt ">Total Amount: <span className="h2 redz">{"$" + Total}</span></div>
                     <div className="panel panel-default ">

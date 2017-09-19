@@ -111,7 +111,7 @@ console.log(nextProps);
 console.log(this.props.cartproducts);
       
         return(
-            <div >
+            <div className="MainContentStyle">
                 {this.state.btnValue}
                 <div className="fixd btn " style={{color:"white"}}>
                     <Link to={"/Cart"} className="white_txt" style={{fontSize:"14px",color:"#FFFFFF"}}>View My Cart </Link>|
