@@ -6,11 +6,13 @@ import auth from './auth';
 
 import products from './shoppingReducer';
 import cart from './cartReducer';
+import results from './resultReducers';
 import invoiceInfo from './invoiceReducer';
 
 const appReducer = combineReducers({
     auth,
     products,
+    results,
     productInfo,
     cart,
     invoiceInfo
