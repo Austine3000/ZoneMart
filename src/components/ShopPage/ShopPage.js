@@ -63,8 +63,9 @@ console.log(nextProps);
         let targetProduct = Object.assign({},this.state.products.find(product=>product.id==ID));
         
        
-        if (targetProduct.Qty < 1){
+        if (targetProduct.Qty >= 0){
             targetProduct.Qty += 1;
+           console.log(targetProduct.Qty);
            
             let newProducts = [...this.state.products.filter( product => product.id != targetProduct.id ),targetProduct];
             newProducts=newProducts.sort(function(a, b) {
@@ -72,7 +73,8 @@ console.log(nextProps);
             });
             this.props.actions.shoppingActions.UpdateProduct(newProducts);
             this.state.products=Object.assign([],newProducts);
-            cartgoods=this.state.products.filter( product => product.Qty == 1);
+            cartgoods=this.state.products.filter( product => product.Qty > 0);
+            console.log(cartgoods);
             this.props.actions.cartActions.AddToCart(cartgoods) 
             
         }
