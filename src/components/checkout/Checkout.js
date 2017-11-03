@@ -81,6 +81,7 @@ class Checkout extends React.Component {
         let amountList =  this.props.cart.map( (cartgood,index) =>  cartgood.Price * cartgood.Qty);
         amountList.reduce((x, y) => x + y);        
         Total =  amountList.reduce((x, y) => x + y);
+        console.log(Total);
         amount = Total * 100;
     }   
 
