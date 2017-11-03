@@ -13,16 +13,9 @@ class Header extends React.Component {
 
     render() {
         
-        let badge;
-        let count;
-        //this.props.cart.forEach(good =>badge = badge + good.Qty);
+        let badge,count;
         if(this.props.cart.length > 0){
-        badge = (this.props.cart.map(good => good.Qty));
-        
-        console.log(badge);
-        count= badge.reduce((x, y) => x + y);  
-        console.log( count);
-    }
+        badge = (this.props.cart.map(good => good.Qty)); count= badge.reduce((x, y) => x + y);}
         const { isAuthenticated } = this.props.auth;
 
         const userLinks = (
