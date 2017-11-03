@@ -3,32 +3,20 @@ import { Link } from 'react-router';
 import validateSignUpInput from "./signUpValidate";
 import { browserHistory } from 'react-router';
 class SignUpForm extends React.Component {
-
    constructor(props) {
-
     super(props);
-
     this.state = {
       username : "",
       email    :  "",
       password : "",
       serverResp :"",
-      dErrors :{}
-      
-    }
-    
-    
+      dErrors :{} 
+    }  
     this.toSubmit = this.toSubmit.bind(this);
-    this.setValue = this.setValue.bind(this);
-    
+    this.setValue = this.setValue.bind(this);    
   }
-
- 
-
   setValue(e){
-
     this.setState({
-
       [e.target.name] : e.target.value,
 
      
