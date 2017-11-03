@@ -6,6 +6,7 @@ import App from './components/App';
 import ShopPage from './components/ShopPage/ShopPage';
 import SignUpPage from './components/signup/SignUpPage';
 import LoginPage from './components/login/LoginPage';
+import ResultPage from './components/resultsPage/ResultPage';
 import Cart from './components/cart/Cart';
 //import Checkout from './components/cart/checkout';
 import requireAuth from './utils/requireAuth';
@@ -32,7 +33,8 @@ export default (
         <Route path="/Addgoods" component={AddGoods}/>    
         <Route path="/ProductList" component={ProductList}/> 
         <Route path="/ManageProduct/:id" component={ManageProduct}/>
-        <Route path="/InvoicePage" component={InvoicePage}/>  
+        <Route path="/InvoicePage" component={InvoicePage}/> 
+        <Route path="/Search_Results/:x" component={ResultPage }/>  
         <Route path="/details/:id" component={ProductDetails}/>
         <Route path="/Payment" component={Payment}/>
     </Route>

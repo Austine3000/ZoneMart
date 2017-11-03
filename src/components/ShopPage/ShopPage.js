@@ -5,6 +5,7 @@ import {bindActionCreators} from 'redux';
 import * as shoppingActions from '../../actions/shoppingActions'; 
 import * as cartActions from '../../actions/cartActions'; 
 import Carousel from './Carousel';
+import * as resultsActions from '../../actions/resultsActions';
 import Products from './Products';
 import {hide,capitalise,show} from '../../Modules/modules';
 import Header from '../common/Header';
@@ -24,7 +25,7 @@ class ShopPage extends React.Component{
            
         }
        console.log(this.state.targetProduct.isAdded);
-       
+        this.search=this.search.bind(this);
         //this.saveCartgoods= this.saveCartgoods.bind(this);
         this.showDetails=this.showDetails.bind(this);
        this.TypeSearch=this.TypeSearch.bind(this);
@@ -44,6 +45,14 @@ console.log(nextProps);
             
     }
    }
+   search(e){
+        e.preventDefault();
+        let founds, {search,found} = this.state;
+        this.props.actions.resultsActions.saveRecord(found);
+        browserHistory.push("/Search_Results/"+ search);
+      
+
+    }
     AddtoCart(ID,e){
     
          console.log(this.state.products);
@@ -118,7 +127,7 @@ console.log(this.props.cartproducts);
                 </div>
                  <div className="searchdiv" style={{marginTop:"10px"}}>
                     <input type="text"   onChange={this.TypeSearch} className="searchText" onFocus={show} value={this.state.search} />
-                   <button className="btn btn-warning searchBtn">Search</button>
+                   <button className="btn btn-warning searchBtn"  onClick={this.search}>Search</button>
                    <div id="searchDiv" className="list-result" style={{position:"relative"}}>
                      
                        <ul className="list-group list-result" >
@@ -164,7 +173,8 @@ function mapStateToProps(state, ownProps) {
         return {
               actions:  {
                 shoppingActions: bindActionCreators(shoppingActions, dispatch),
-                cartActions: bindActionCreators(cartActions, dispatch)
+                cartActions: bindActionCreators(cartActions, dispatch),
+                resultsActions: bindActionCreators(resultsActions, dispatch)
               }
              }
     }
